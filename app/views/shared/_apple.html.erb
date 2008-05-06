@@ -1,0 +1,8 @@
+<li>
+  <ul>
+    <li>
+      <%= apple_label(apple) %>
+      <%= button_to "remove", basket_path(:id => apple.id), :method => :delete %>
+    </li>
+  </ul>
+</li>

@@ -1,3 +1,11 @@
-# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
+
+
+  #Shopping basket
+
+  def apple_label(apple)
+    "#{apple.billable.title} Unit price: #{apple.price} Quantity: #{apple.quantity} Sub-total: #{apple.sum_price}"
+  end
+
 end
