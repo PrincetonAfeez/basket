@@ -2,3 +2,4 @@
 <ul>
   <%= render :partial => "shared/apple", :collection => @basket.apples %>
 </ul>
+<%= button_to "remove all", basket_path(:id => "all"), :method => :delete %>

@@ -12,11 +12,9 @@ class Basket
   private
 
   def add_apples(basket)
-    t1 = Time.now.to_s(:db)
-    t2 = 60.seconds.from_now.to_s(:db)
+    now = Time.now.xmlschema
     [*Inventory.find(basket.keys,
-        :conditions => ["(effective_at, expires_at) 
-                         OVERLAPS (TIMESTAMP ?, TIMESTAMP ?)",t1,t2])]
+        :conditions => "(now() >= effective_at AND now() <= expires_at)")]
   end
 
   def count_apples(basket)

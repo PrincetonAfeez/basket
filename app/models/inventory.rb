@@ -10,10 +10,12 @@ class Inventory < ActiveRecord::Base
   private 
 
   def not_in_existing_period
-    conflicts = Inventory.find_all_by_billable_id(self.billable_id, 
-                  :conditions => ["(effective_at, expires_at) 
-                    OVERLAPS (TIMESTAMP ?, TIMESTAMP ?)",
-                    self.effective_at,self.expires_at])
+    conflicts = Inventory.find(:all, 
+      :conditions => ["billable_type = :type AND
+                      ((effective_at <= :starts AND expires_at > :expires)
+                      OR (effective_at >= :starts AND effective_at < :expires))",
+                      {:starts => self.effective_at, :expires => self.expires_at,
+                       :type => self.billable_type}])
     errors.add(:effective_at, "conflicts with an exisiting period") if conflicts.any? 
   end
  

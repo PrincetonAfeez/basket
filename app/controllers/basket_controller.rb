@@ -24,8 +24,12 @@ class BasketController < ApplicationController
   end
 
   def basket_takes(id)
-    session[:basket][id.to_i] -= 1
-    session[:basket].delete_if {|k,v| v == 0} 
+    if id == "all"
+      session[:basket].clear
+    else
+      session[:basket][id.to_i] -= 1
+      session[:basket].delete_if {|k,v| v == 0} 
+    end
   end
 
 
