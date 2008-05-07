@@ -26,4 +26,5 @@ class Basket
       apple[:sum_price] = apple.price * quantity
     end
   end
+
 end
