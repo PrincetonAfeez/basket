@@ -12,7 +12,7 @@ class Inventory < ActiveRecord::Base
   def not_in_existing_period
     conflicts = Inventory.find(:all, 
       :conditions => ["billable_type = :type AND
-                      ((effective_at <= :starts AND expires_at > :expires)
+                      ((effective_at <= :starts AND expires_at > :starts)
                       OR (effective_at >= :starts AND effective_at < :expires))",
                       {:starts => self.effective_at, :expires => self.expires_at,
                        :type => self.billable_type}])
