@@ -12,6 +12,8 @@
 
   <%= render :partial => 'shared/nav' %>
   basket: <%= @basket.to_json %>
+  <br />
+  <br /> 
   session: <%= session[:basket].to_json%>
   
   <%= yield  %>

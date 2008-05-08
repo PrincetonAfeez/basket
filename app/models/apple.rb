@@ -1,18 +1,19 @@
 class Apple
 
-  attr_accessor :apple, :quantity
+  attr_accessor :apple, :variety, :quantity
 
   def initialize(id,basket)
     @apple = id.to_i
-    if basket.has_key?(@apple)
-      @quantity = basket[@apple] + 1
+    @variety = Inventory.find(@apple).billable_type
+    if basket[@variety] && basket[@variety].has_key?(@apple)
+      @quantity = basket[@variety][@apple] + 1
     else
       @quantity = 1
     end
   end
 
   def crunch
-    {@apple => @quantity}
+    {@variety => {@apple => @quantity}}
   end
 
 end

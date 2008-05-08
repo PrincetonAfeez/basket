@@ -7,6 +7,10 @@ class Inventory < ActiveRecord::Base
   validate :not_in_existing_period
   
 
+  def variety
+    billable_type
+  end
+
   private 
 
   def not_in_existing_period
