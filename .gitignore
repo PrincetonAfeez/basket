@@ -1,2 +1,2 @@
 log/*.log
-vendor/**
+vendor/rails
