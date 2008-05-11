@@ -8,7 +8,7 @@ module AppleBasket
 
       module ClassMethods
 
-        def acts_as_basket
+        def acts_as_apple_label
           belongs_to :billable, :polymorphic => true
           before_validation :set_effective_duration
           validates_presence_of :effective_at, :expires_at, :billable_id
