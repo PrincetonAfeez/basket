@@ -1,5 +1,6 @@
 module AppleBasket
   module Acts
+
     module JuicyApple
 
       def self.included(base)
@@ -13,8 +14,8 @@ module AppleBasket
           before_validation :set_effective_duration
           validates_presence_of :effective_at, :expires_at, :billable_id
           validate :not_in_existing_period
-          include AppleBasket::Acts::JuicyApple::InstanceMethods
-          extend AppleBasket::Acts::JuicyApple::SingletonMethods
+          include AppleBasket::Acts::Basket::InstanceMethods
+          extend AppleBasket::Acts::Basket::SingletonMethods
         end
 
         def acts_as_apple
@@ -43,9 +44,9 @@ module AppleBasket
       end
 
       module InstanceMethods
-     
-        def variety
-          billable_type
+    
+        def quote
+          inventory.price
         end
 
         def inventory
@@ -58,6 +59,19 @@ module AppleBasket
 
         end
       end
+    end
+
+    module Basket
+
+      module SingletonMethods
+      end
+
+      module InstanceMethods
+        def variety
+          billable_type
+        end
+      end
+
     end
   end
 end
