@@ -13,7 +13,7 @@ module AppleBasket
           belongs_to :billable, :polymorphic => true
           before_validation :set_effective_duration
           validates_presence_of :effective_at, :expires_at, :billable_id
-          validate :not_in_existing_period
+          validate_on_create :not_in_existing_period
           include AppleBasket::Acts::Basket::InstanceMethods
           extend AppleBasket::Acts::Basket::SingletonMethods
         end
